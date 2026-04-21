@@ -1,12 +1,28 @@
+
 <!DOCTYPE html>
 <html>
-    <head> <title> Test </title> </head>
-    <body>
-	Hello, there
-    </body>
-    <script>
-	fetch("discussions.json")
-	    .then( r=> r.json())
-	    .then(data=> console.log(data));
-    </script>
+<head>
+  <title>My Blog</title>
+  <style>
+    body { font-family: sans-serif; }
+    .grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+    .card { border: 1px solid #ddd; padding: 10px; border-radius: 10px; }
+    img { width: 100%; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <h1>Blogs</h1>
+  <div class="grid">
+
+    <div class="card">
+      <a href="blogs/test_blog/index.html">
+        <img src="blogs/test_blog/thumbnail.jpg">
+        <h3>My First Post</h3>
+      </a>
+      <p>Checking if working</p>
+      <p></p>
+    </div>
+    
+  </div>
+</body>
 </html>
