@@ -32,8 +32,8 @@ for folder in os.listdir(BLOG_DIR):
         "folder": folder,
         "title": title,
         "thumbnail": thumbnail,
-        "desc": desc
-        "date": date
+        "desc": desc,
+        "date": date,
     })
 
 html = """
