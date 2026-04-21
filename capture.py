@@ -12,7 +12,7 @@ entry = {
     "body": body,
     "user": user,
     "url": url,
-    "time": datetime.utcnow().isoformat()
+    "date": datetime.utcnow().isoformat()
 }
 
 try:
