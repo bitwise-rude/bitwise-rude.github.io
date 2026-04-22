@@ -4,9 +4,12 @@ on:
   push:
     paths:
       - "blogs/**"
+      - "build.py"
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
   build:
@@ -32,20 +35,21 @@ jobs:
           git add index.html
           git commit -m "Auto update blog index" || exit 0
           git push
-          
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: .
-    deploy:
-      needs: build
-      runs-on: ubuntu-latest
 
-      environment:
-        name: github-pages
-        url: ${{ steps.deployment.outputs.page_url }}
+  deploy:   
+    needs: build
+    runs-on: ubuntu-latest
 
-      steps:
-        - name: Deploy to GitHub Pages
-          id: deployment
-          uses: actions/deploy-pages@v4
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
