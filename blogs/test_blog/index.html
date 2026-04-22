@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+
+  <title>My Blog</title>
+  <style>
+    body{
+        background-color:#0a181f;
+        color: white;
+        font-family: sans-serif;
+        font-style:normal;
+    }
+
+    #navbar ul li a {
+        color:#e5ffcc;
+    }
+
+    #navbar ul {
+        list-style-type:none;
+        display: flex;
+        justify-content:space-evenly;
+        text-decoration:none;
+        width:80%;
+        color:#e5ffcc;
+    }
+
+    #navbar ul li:hover{
+        cursor: pointer;
+        transform: translate(0,-2px);
+    }
+
+    .grid { 
+        margin-left:10px;
+        display: grid; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    .card { 
+        border: 1px solid #ddd; padding: 10px; border-radius: 10px;
+    }
+
+    img { 
+        width: 100%; border-radius: 8px; 
+    }
+
+    h2 {
+        margin-left:30px;
+        text-decoration:underline;
+        color:#bdffeb;
+        font-family: "Dancing Script", cursive;
+    }
+    
+    a {
+        text-decoration:none;
+        color:white;
+    }
+
+    #prolouge {
+        font-family: Times;
+        font-size:25px;
+        margin-left : 30px;
+        color:white;
+    }
+
+    #container {
+	display:flex;
+	width:75%;
+	justify-content:center;
+    }
+    #poem {
+	display:flex;
+	flex-direction:column;
+	align-content:center;
+    }
+    #poem p{
+	height:1px;
+    }
+
+  </style>
+</head>
+<body>
+    <div id='navbar'>
+        <ul>
+            <li> <a href="/">Home</a> </li>
+            <li> <a href='#blog'>Blogs</a> </li>
+        </ul>
+    </div>
+    <p> Written By: Robert Frost </p>
+    <div id='container'> 
+	<div id='poem'>
+	    <p>Two roads diverged in a yellow wood,</p>
+	    <p>And sorry I could not travel both</p>
+	    <p>And be one traveler, long I stood</p>
+	    <p>And looked down one as far as I could</p>
+	    <p>To where it bent in the undergrowth;</p>
+
+	    <p>Then took the other, as just as fair,</p>
+	    <p>And having perhaps the better claim,</p>
+	    <p>Because it was grassy and wanted wear;</p>
+	    <p>Though as for that the passing there</p>
+	    <p>Had worn them really about the same,</p>
+
+	    <p>And both that morning equally lay</p>
+	    <p>In leaves no step had trodden black.</p>
+	    <p>Oh, I kept the first for another day!</p>
+	    <p>Yet knowing how way leads on to way,</p>
+	    <p>I doubted if I should ever come back.</p>
+
+	    <p>I shall be telling this with a sigh</p>
+	    <p>Somewhere ages and ages hence:</p>
+	    <p>Two roads diverged in a wood, and I—</p>
+	    <p>I took the one less traveled by,</p>
+	    <p>And that has made all the difference.</p>
+	</div>
+    </div>
+</body>
+</html>
