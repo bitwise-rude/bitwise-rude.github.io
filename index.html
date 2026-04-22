@@ -1,93 +1,123 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
-
   <title>My Blog</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+
   <style>
     body{
-	background-color:#0a181f;
-	color: white;
-	font-family: sans-serif;
-	font-style:normal;
-    }
-
-    #navbar ul li a {
-	color:#e5ffcc;
+      background-color:#0a181f;
+      color: white;
+      font-family: sans-serif;
     }
 
     #navbar ul {
-	list-style-type:none;
-	display: flex;
-	justify-content:space-evenly;
-	text-decoration:none;
-	width:80%;
-	color:#e5ffcc;
+      list-style-type:none;
+      display:flex;
+      justify-content:space-evenly;
+      width:80%;
     }
 
-    #navbar ul li:hover{
-	cursor: pointer;
-	transform: translate(0,-2px);
+    #navbar ul li a {
+      color:#e5ffcc;
+      text-decoration:none;
     }
 
-    .grid { 
-	margin-left:10px;
-	display: grid; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    .grid {
+      margin-left:10px;
+      display:grid;
+      gap:20px;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     }
 
-    .card { 
-	border: 1px solid #ddd; padding: 10px; border-radius: 10px;
+    .card {
+      border:1px solid #ddd;
+      padding:10px;
+      border-radius:10px;
     }
 
-    img { 
-	width: 100%; border-radius: 8px; 
+    img {
+      width:100%;
+      border-radius:8px;
     }
 
     h2 {
-	margin-left:30px;
-	text-decoration:underline;
-	color:#bdffeb;
-	font-family: "Dancing Script", cursive;
-    }
-    
-    a {
-	text-decoration:none;
-	color:white;
+      margin-left:30px;
+      text-decoration:underline;
+      color:#bdffeb;
+      font-family:"Dancing Script", cursive;
     }
 
     #prolouge {
-	font-family: Times;
-	font-size:25px;
-	margin-left : 30px;
-	color:white;
+      font-family:Times;
+      font-size:25px;
+      margin-left:30px;
     }
+  </style> </head>
 
-  </style>
-</head>
 <body>
-    <div id='navbar'>
-	<ul>
-	    <li> <a href="">Home</a> </li>
-	    <li> <a href='#blog'>Blogs</a> </li>
-	</ul>
-    </div>
-    <p id="prolouge">Hey there! It's me Meyan Adhikari. Contact me @<a href="mailto:dareludum@gmail.com">mail</a></p>
-    <br>
-    <h2 id='blog'>My Blogs</h2> 
-    <div class="grid">
 
-    <div class="card">
-      <a href="blogs/test_blog/index.html">
-        <img src="blogs/test_blog/thumbnail.jpg">
-        <h3>The Road Not Taken</h3>
-      </a>
-      <p>Beautiful Poem by Robert Frost</p>
-      <p>2026-04-22</p>
-    </div>
-    
-  </div>
+<div id="navbar">
+  <ul>
+    <li><a href="">Home</a></li>
+    <li><a href="#blog">Blogs</a></li>
+  </ul>
+</div>
+
+<p id="prolouge">
+  Hey there! It's me Meyan Adhikari. Contact me @
+  <a href="mailto:dareludum@gmail.com">mail</a>
+</p>
+
+<h2 id="blog">My Blogs</h2>
+
+<div class="grid" id="blog-container"></div>
+
+<script>
+const username = "bitwise-rude";
+const repo = "bitwise-rude.github.io";
+
+async function loadBlogs() {
+  const res = await fetch(`https://api.github.com/repos/${username}/${repo}/contents/blogs`);
+  const folders = await res.json();
+
+  const container = document.getElementById("blog-container");
+
+  for (const folder of folders) {
+    if (folder.type === "dir") {
+
+      const configUrl = `https://raw.githubusercontent.com/${username}/${repo}/main/blogs/${folder.name}/config.json`;
+
+      try {
+        const configRes = await fetch(configUrl);
+        const config = await configRes.json();
+
+        const card = document.createElement("div");
+        card.className = "card";
+
+        card.innerHTML = `
+          <a href="blogs/${folder.name}/index.html">
+            <img src="blogs/${folder.name}/${config.thumbnail}">
+            <h3>${config.title}</h3>
+          </a>
+          <p>${config.description}</p>
+          <p>${config.date}</p>
+        `;
+
+        container.appendChild(card);
+
+      } catch (err) {
+        console.log("Skipping", folder.name);
+      }
+    }
+  }
+}
+
+loadBlogs();
+</script>
+
 </body>
 </html>
